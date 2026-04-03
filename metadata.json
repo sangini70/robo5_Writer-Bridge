@@ -1,0 +1,5 @@
+{
+  "name": "Library → Writer Bridge",
+  "description": "도서관 리서치부터 원문 작성 지시문까지 하나의 흐름으로 처리하는 생산 자동화 앱",
+  "requestFramePermissions": []
+}
