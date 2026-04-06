@@ -173,6 +173,14 @@ export default function App() {
 - 줄바꿈 없이 출력한다
 - 출력이 JSON이 아니면 다시 생성한다
 
+# 데이터 출력 추가 규칙
+- 숫자에 쉼표 사용 금지 (1506 형식)
+- 괄호 사용 금지
+- % 기호 제거 → 숫자로 표현 (예: 3.50%~3.75% -> 3.5-3.75)
+- 단위 최소화 (원, 달러 정도만 허용)
+- 특수문자 (~, %, (), ,) 최소 사용
+- 모든 문자열은 단순 텍스트로 출력한다
+
 # JSON 템플릿 (반드시 아래 형태를 1줄로 채워서 출력)
 {"topic":"","latest_criteria":"","numerical_data":[],"policy":"","economic_connection":"","writing_points":[],"risks":[]}
 
