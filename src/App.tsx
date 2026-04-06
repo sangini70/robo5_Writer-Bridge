@@ -158,25 +158,31 @@ export default function App() {
     const prompt = `주제: "${title}"
 검색 의도: ${intent}
 
-위 주제에 대해 리서치하고 반드시 아래 JSON 형식으로만 출력하세요. 설명은 절대 추가하지 마세요.
+위 주제에 대해 리서치하고 아래 규칙에 따라 정확히 응답하세요.
 
-요구사항:
-1. 최신 기준 및 수치 데이터를 반드시 포함할 것
-2. 관련 정책이 있다면 실존 여부를 확인할 것
-3. 경제 지표(금리/환율/유가/물가)와의 연결성을 분석할 것
-4. 작성 포인트는 5개 이상 도출할 것
-5. 관련 리스크를 반드시 포함할 것
+# 절대 규칙
+- JSON 외 텍스트 출력 금지
+- 설명 금지
+- 반드시 한 줄 JSON으로만 출력
+- 출력이 JSON 형식이 아니면 오류로 간주
 
-출력 형식 (JSON):
-{
-  "topic": "주제",
-  "latest_criteria": "최신 기준 설명",
-  "numerical_data": ["데이터1", "데이터2"],
-  "policy": "관련 정책",
-  "economic_connection": "경제 지표 연결 분석",
-  "writing_points": ["포인트1", "포인트2", "포인트3", "포인트4", "포인트5"],
-  "risks": ["리스크1", "리스크2"]
-}`;
+# 출력 강제 구조
+- 출력은 반드시 JSON 1줄만 생성한다
+- JSON 외 다른 문장, 설명, 머리말, 꼬리말을 절대 출력하지 않는다
+- 모든 값은 문자열 또는 문자열 배열만 사용한다
+- 줄바꿈 없이 출력한다
+- 출력이 JSON이 아니면 다시 생성한다
+
+# JSON 템플릿 (반드시 아래 형태를 1줄로 채워서 출력)
+{"topic":"","latest_criteria":"","numerical_data":[],"policy":"","economic_connection":"","writing_points":[],"risks":[]}
+
+# 데이터 요구사항
+- latest_criteria: 최신 기준
+- numerical_data: 수치 데이터 (배열)
+- policy: 관련 정책
+- economic_connection: 경제 연결 (금리/환율/유가/물가)
+- writing_points: 작성 포인트 5개 이상 (배열)
+- risks: 리스크 (배열)`;
     setLibraryPrompt(prompt);
     // Reset subsequent steps
     setEvaluation(null);
@@ -433,3 +439,4 @@ ${writerPrompt}`;
     </div>
   );
 }
+
